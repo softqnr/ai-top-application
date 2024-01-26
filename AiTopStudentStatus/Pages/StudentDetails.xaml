@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AiTopStudentStatus.Converters"
+             x:Class="AiTopStudentStatus.Pages.StudentDetails">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="{Binding StudentName}" TextColor="White" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <converters:LearningStateValueConverter x:Key="LearningStateValueConverter"/>
+        <converters:LearningStateImageConverter x:Key="LearningStateImageConverter"/>
+        <converters:LearningStateColorConverter x:Key="LearningStateColorConverter"/>
+        <converters:BehaviouralStateValueConverter x:Key="BehaviouralStateValueConverter"/>
+        <converters:BehaviouralStateImageConverter x:Key="BehaviouralStateImageConverter"/>
+        <converters:BehaviouralStateColorConverter x:Key="BehaviouralStateColorConverter"/>
+        <converters:EmotionalStateValueConverter x:Key="EmotionalStateValueConverter"/>
+        <converters:EmotionalStateImageConverter x:Key="EmotionalStateImageConverter"/>
+        <converters:StateSizeConverter x:Key="StateSizeConverter"/>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Margin="10" HorizontalOptions="Center" VerticalOptions="Center">
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Body"/>
+            </Style>
+        </VerticalStackLayout.Resources>
+
+        <VerticalStackLayout>
+            <Label VerticalOptions="StartAndExpand" HorizontalOptions="Center" Text="Behavioural State" TextColor="Gray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="40">
+                <Image Source="{Binding BehaviouralState, Converter={StaticResource BehaviouralStateImageConverter}}" 
+                       WidthRequest="{Binding BehaviouralState, Converter={StaticResource StateSizeConverter}}"/>
+                <Label Text="{Binding BehaviouralState,Converter={StaticResource BehaviouralStateValueConverter}}" 
+                       TextColor="{Binding BehaviouralState, Converter={StaticResource BehaviouralStateColorConverter}}"
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" 
+                       FontSize="Title"
+                       Margin="5,0,0,0"/>
+            </StackLayout>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="0,10,0,0">
+            <Label VerticalOptions="StartAndExpand" HorizontalOptions="Center" Text="Learning State" TextColor="Gray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="40">
+                <Image Source="{Binding LearningState, Converter={StaticResource LearningStateImageConverter}}" 
+                       WidthRequest="{Binding LearningState, Converter={StaticResource StateSizeConverter}}"/>
+                <Label Text="{Binding LearningState,Converter={StaticResource LearningStateValueConverter}}" 
+                       TextColor="{Binding LearningState, Converter={StaticResource LearningStateColorConverter}}"
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" 
+                       FontSize="Title"
+                       Margin="5,0,0,0"/>
+            </StackLayout>
+        </VerticalStackLayout>
+
+
+        <StackLayout Orientation="Horizontal" Margin="0,40,0,0">
+
+            <VerticalStackLayout Margin="0,10,0,0">
+                <Label VerticalOptions="StartAndExpand" HorizontalOptions="Center" Text="Emotional State" TextColor="Gray"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="40">
+                    <Image Source="{Binding EmotionalState, Converter={StaticResource EmotionalStateImageConverter}}" WidthRequest="30"/>
+                    <Label Text="{Binding EmotionalState,Converter={StaticResource EmotionalStateValueConverter}}" 
+                            FontSize="Medium"
+                            FontAttributes="Bold" 
+                            VerticalOptions="Center" 
+                            Margin="5,0,0,0"/>
+                </StackLayout>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Margin="30,10,0,0">
+                <Label VerticalOptions="StartAndExpand" HorizontalOptions="Center" Text="BPM" TextColor="Gray"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="40">
+                    <Image Source="heartrate.png" 
+                       WidthRequest="20"/>
+                    <Label Text="{Binding HeartRate}"
+                           FontSize="Medium"
+                           FontAttributes="Bold" 
+                           VerticalOptions="Center" 
+                           Margin="5,0,0,0"/>
+                </StackLayout>
+            </VerticalStackLayout>
+
+        </StackLayout>
+
+        
+    </VerticalStackLayout>
+</ContentPage>
